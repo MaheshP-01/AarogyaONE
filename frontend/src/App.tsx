@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { MainLayout } from './layouts/MainLayout';
 import { ClinicalLayout } from './layouts/ClinicalLayout';
 import { LandingPage } from './pages/LandingPage';
+import { HealthWorkerPage } from './pages/HealthWorkerPage';
 import { PatientRegistrationPage } from './pages/PatientRegistrationPage';
 import { DoctorPage } from './pages/DoctorPage';
 import { PatientPage } from './pages/PatientPage';
@@ -18,9 +19,12 @@ export const App: React.FC = () => {
           <Route path="/patient" element={<PatientPage />} />
         </Route>
 
-        {/* Clinical Health Worker Portal & Patient Registration */}
+        {/* Clinical Application Portal */}
         <Route element={<ClinicalLayout />}>
-          <Route path="/health-worker" element={<PatientRegistrationPage />} />
+          {/* Health Worker Dashboard Portal */}
+          <Route path="/health-worker" element={<HealthWorkerPage />} />
+
+          {/* Dedicated Patient Registration Tab / Page */}
           <Route path="/patients/register" element={<PatientRegistrationPage />} />
         </Route>
 

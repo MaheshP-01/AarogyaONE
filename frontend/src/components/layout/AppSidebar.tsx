@@ -1,8 +1,8 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import {
   LayoutDashboard,
-  Users,
+  UserPlus,
   Calendar,
   Activity,
   Share2,
@@ -18,22 +18,23 @@ interface AppSidebarProps {
 }
 
 export const AppSidebar: React.FC<AppSidebarProps> = ({ isOpen, onClose, t }) => {
+  const location = useLocation();
+
   const navItems = [
     {
       id: 'dashboard',
       label: t.navDashboard,
       to: '/health-worker',
       icon: LayoutDashboard,
-      disabled: true,
-      hint: 'Coming soon',
+      active: location.pathname === '/health-worker',
     },
     {
-      id: 'patients',
-      label: t.navPatients,
+      id: 'registration',
+      label: t.navRegistration,
       to: '/patients/register',
-      icon: Users,
+      icon: UserPlus,
       badge: t.newBadge,
-      active: true,
+      active: location.pathname === '/patients/register',
     },
     {
       id: 'appointments',
@@ -96,14 +97,24 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({ isOpen, onClose, t }) =>
             {navItems.map((item) => {
               const Icon = item.icon;
 
-              if (item.active) {
+              if (!item.disabled) {
                 return (
-                  <div
+                  <NavLink
                     key={item.id}
-                    className="flex items-center justify-between px-3 py-2 rounded-md bg-teal-50 border border-teal-200 text-teal-900 font-semibold text-xs transition-colors"
+                    to={item.to}
+                    onClick={onClose}
+                    className={`flex items-center justify-between px-3 py-2 rounded-md text-xs font-medium transition-colors ${
+                      item.active
+                        ? 'bg-teal-50 border border-teal-200 text-teal-900 font-semibold shadow-2xs'
+                        : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900'
+                    }`}
                   >
                     <div className="flex items-center space-x-2.5">
-                      <Icon className="w-4 h-4 text-teal-700 stroke-[2.2]" />
+                      <Icon
+                        className={`w-4 h-4 ${
+                          item.active ? 'text-teal-700 stroke-[2.2]' : 'text-slate-500'
+                        }`}
+                      />
                       <span>{item.label}</span>
                     </div>
                     {item.badge && (
@@ -111,7 +122,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({ isOpen, onClose, t }) =>
                         {item.badge}
                       </span>
                     )}
-                  </div>
+                  </NavLink>
                 );
               }
 

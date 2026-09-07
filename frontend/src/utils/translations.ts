@@ -11,6 +11,7 @@ export interface TranslationDictionary {
 
   // Sidebar
   navDashboard: string;
+  navRegistration: string;
   navPatients: string;
   navAppointments: string;
   navTriage: string;
@@ -148,6 +149,7 @@ export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
 
     // Sidebar
     navDashboard: 'Dashboard',
+    navRegistration: 'Patient Registration',
     navPatients: 'Patients',
     navAppointments: 'Appointments',
     navTriage: 'Triage',
@@ -284,6 +286,7 @@ export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
 
     // Sidebar
     navDashboard: 'डॅशबोर्ड',
+    navRegistration: 'रुग्ण नोंदणी',
     navPatients: 'रुग्ण',
     navAppointments: 'अपॉइंटमेंट्स',
     navTriage: 'ट्रायज',
@@ -420,6 +423,7 @@ export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
 
     // Sidebar
     navDashboard: 'डैशबोर्ड',
+    navRegistration: 'मरीज पंजीकरण',
     navPatients: 'मरीज',
     navAppointments: 'अपॉइंटमेंट्स',
     navTriage: 'ट्रायज',
