@@ -16,46 +16,46 @@ export const DoctorSettingsPage: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6 max-w-4xl mx-auto pb-12">
-      {/* Header */}
-      <div className="bg-white border border-slate-200 rounded-lg p-5 sm:p-6 shadow-2xs">
+    <div className="space-y-5 max-w-4xl mx-auto pb-12">
+      {/* Page Header */}
+      <div className="bg-white border border-slate-200/90 rounded-lg p-5">
         <div className="flex items-center space-x-2">
-          <Settings className="w-5 h-5 text-blue-700" />
-          <h1 className="text-xl font-bold text-slate-900 tracking-tight">
-            Doctor Workstation Preferences
+          <Settings className="w-4 h-4 text-sky-700" />
+          <h1 className="text-lg font-semibold text-slate-900 tracking-tight">
+            Workstation Preferences
           </h1>
         </div>
-        <p className="text-xs text-slate-500 mt-1">
+        <p className="text-[13px] text-slate-500 mt-0.5">
           Configure clinical workstation environment, assigned health facility, audio alerts, and teleconsultation bandwidth parameters.
         </p>
       </div>
 
       {saved && (
-        <div className="bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs px-4 py-2.5 rounded-lg flex items-center space-x-2">
-          <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-          <span>Workstation settings successfully saved and applied.</span>
+        <div className="bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs px-4 py-2.5 rounded-md flex items-center space-x-2">
+          <CheckCircle2 className="w-4 h-4 text-emerald-700 shrink-0" />
+          <span className="font-medium">Workstation settings successfully saved and applied.</span>
         </div>
       )}
 
-      <form onSubmit={handleSave} className="space-y-6">
+      <form onSubmit={handleSave} className="space-y-5">
         {/* Practice & Facility Configuration */}
-        <div className="bg-white border border-slate-200 rounded-lg p-5 shadow-2xs space-y-4">
-          <div className="flex items-center space-x-2 pb-2 border-b border-slate-100">
-            <Building2 className="w-4 h-4 text-slate-700" />
-            <h2 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
-              Assigned Facility & Clinical Department
+        <div className="bg-white border border-slate-200/90 rounded-lg p-5 space-y-4">
+          <div className="flex items-center space-x-2 pb-2.5 border-b border-slate-100">
+            <Building2 className="w-4 h-4 text-slate-600" />
+            <h2 className="text-xs font-semibold text-slate-900 uppercase tracking-wider">
+              Assigned Facility & Department
             </h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
             <div>
-              <label className="block font-semibold text-slate-700 uppercase tracking-wider mb-1">
+              <label className="block text-[11px] font-semibold text-slate-600 uppercase tracking-wider mb-1.5">
                 Primary Assigned Facility
               </label>
               <select
                 value={facility}
                 onChange={(e) => setFacility(e.target.value)}
-                className="w-full p-2 bg-slate-50 border border-slate-300 rounded focus:bg-white focus:border-blue-600 focus:outline-none"
+                className="w-full p-2 bg-slate-50 border border-slate-200 rounded-md focus:bg-white focus:border-sky-600 focus:outline-none transition-colors text-slate-900"
               >
                 <option value="District Hospital, Dhule">District Civil Hospital, Dhule</option>
                 <option value="GMC Dhule">Government Medical College (GMC), Dhule</option>
@@ -65,80 +65,80 @@ export const DoctorSettingsPage: React.FC = () => {
             </div>
 
             <div>
-              <label className="block font-semibold text-slate-700 uppercase tracking-wider mb-1">
+              <label className="block text-[11px] font-semibold text-slate-600 uppercase tracking-wider mb-1.5">
                 Physician Department / Specialty
               </label>
               <input
                 type="text"
                 value={specialty}
                 onChange={(e) => setSpecialty(e.target.value)}
-                className="w-full p-2 bg-slate-50 border border-slate-300 rounded focus:bg-white focus:border-blue-600 focus:outline-none font-medium"
+                className="w-full p-2 bg-slate-50 border border-slate-200 rounded-md focus:bg-white focus:border-sky-600 focus:outline-none text-slate-900 font-medium transition-colors"
               />
             </div>
           </div>
         </div>
 
-        {/* Clinical Alerts & Notification Settings */}
-        <div className="bg-white border border-slate-200 rounded-lg p-5 shadow-2xs space-y-4">
-          <div className="flex items-center space-x-2 pb-2 border-b border-slate-100">
-            <Bell className="w-4 h-4 text-slate-700" />
-            <h2 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
-              Triage Alerts & Sound Notifications
+        {/* Clinical Alerts & Sound Notifications */}
+        <div className="bg-white border border-slate-200/90 rounded-lg p-5 space-y-4">
+          <div className="flex items-center space-x-2 pb-2.5 border-b border-slate-100">
+            <Bell className="w-4 h-4 text-slate-600" />
+            <h2 className="text-xs font-semibold text-slate-900 uppercase tracking-wider">
+              Triage Alerts & Audio
             </h2>
           </div>
 
           <div className="space-y-3 text-xs">
-            <label className="flex items-center space-x-3 cursor-pointer">
+            <label className="flex items-start space-x-3 cursor-pointer">
               <input
                 type="checkbox"
                 checked={audioChimes}
                 onChange={(e) => setAudioChimes(e.target.checked)}
-                className="w-4 h-4 rounded text-blue-700 focus:ring-blue-500 border-slate-300"
+                className="w-4 h-4 mt-0.5 rounded text-sky-700 focus:ring-sky-500 border-slate-300"
               />
               <div>
-                <span className="font-semibold text-slate-800">Play Audio Chime on High-Risk Patient Arrival</span>
-                <p className="text-[11px] text-slate-500">Audible notification when an acute dyspnea / high fever patient is triaged by a frontline ASHA worker.</p>
+                <span className="font-semibold text-slate-900">Audio chime on high-risk patient queue arrival</span>
+                <p className="text-[11px] text-slate-500 mt-0.5">Audible notification when an acute respiratory distress / low SpO2 patient is triaged by frontline ASHA.</p>
               </div>
             </label>
 
-            <label className="flex items-center space-x-3 cursor-pointer">
+            <label className="flex items-start space-x-3 cursor-pointer">
               <input
                 type="checkbox"
                 checked={lowBandwidthMode}
                 onChange={(e) => setLowBandwidthMode(e.target.checked)}
-                className="w-4 h-4 rounded text-blue-700 focus:ring-blue-500 border-slate-300"
+                className="w-4 h-4 mt-0.5 rounded text-sky-700 focus:ring-sky-500 border-slate-300"
               />
               <div>
-                <span className="font-semibold text-slate-800">Enable Low-Bandwidth Adaptive Mode</span>
-                <p className="text-[11px] text-slate-500">Prioritizes crystal-clear audio stream over video when rural cell towers experience packet drops.</p>
+                <span className="font-semibold text-slate-900">Low-bandwidth adaptive teleconsultation mode</span>
+                <p className="text-[11px] text-slate-500 mt-0.5">Automatically prioritizes clinical audio stream clarity over HD video bitrate during rural cell tower packet loss.</p>
               </div>
             </label>
           </div>
         </div>
 
         {/* Consultation Auto-Save */}
-        <div className="bg-white border border-slate-200 rounded-lg p-5 shadow-2xs space-y-4">
-          <div className="flex items-center space-x-2 pb-2 border-b border-slate-100">
-            <Shield className="w-4 h-4 text-slate-700" />
-            <h2 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
-              Consultation Integrity & Auto-Save
+        <div className="bg-white border border-slate-200/90 rounded-lg p-5 space-y-4">
+          <div className="flex items-center space-x-2 pb-2.5 border-b border-slate-100">
+            <Shield className="w-4 h-4 text-slate-600" />
+            <h2 className="text-xs font-semibold text-slate-900 uppercase tracking-wider">
+              Clinical Notes Auto-Save
             </h2>
           </div>
 
           <div className="text-xs max-w-sm">
-            <label className="block font-semibold text-slate-700 uppercase tracking-wider mb-1">
-              Local Auto-Save Interval (Seconds)
+            <label className="block text-[11px] font-semibold text-slate-600 uppercase tracking-wider mb-1.5">
+              Local Auto-Save Frequency
             </label>
             <select
               value={autoSaveInterval}
               onChange={(e) => setAutoSaveInterval(e.target.value)}
-              className="w-full p-2 bg-slate-50 border border-slate-300 rounded focus:bg-white focus:border-blue-600 focus:outline-none"
+              className="w-full p-2 bg-slate-50 border border-slate-200 rounded-md focus:bg-white focus:border-sky-600 focus:outline-none text-slate-900 transition-colors"
             >
               <option value="15">Every 15 seconds (High Frequency)</option>
               <option value="30">Every 30 seconds (Recommended)</option>
               <option value="60">Every 60 seconds</option>
             </select>
-            <p className="text-[11px] text-slate-500 mt-1">Prevents loss of clinical observations during intermittent hospital network disconnections.</p>
+            <p className="text-[11px] text-slate-500 mt-1">Prevents loss of clinical observations during intermittent rural network drops.</p>
           </div>
         </div>
 
@@ -146,9 +146,9 @@ export const DoctorSettingsPage: React.FC = () => {
         <div className="flex justify-end">
           <button
             type="submit"
-            className="inline-flex items-center space-x-1.5 px-5 py-2 bg-blue-700 hover:bg-blue-800 text-white rounded text-xs font-semibold shadow-xs transition-colors"
+            className="inline-flex items-center space-x-1.5 px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-md text-xs font-semibold transition-colors"
           >
-            <Save className="w-4 h-4" />
+            <Save className="w-3.5 h-3.5" />
             <span>Save Preferences</span>
           </button>
         </div>
@@ -156,3 +156,4 @@ export const DoctorSettingsPage: React.FC = () => {
     </div>
   );
 };
+

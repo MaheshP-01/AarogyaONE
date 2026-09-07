@@ -1,21 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import {
-  ArrowLeft,
-  Play,
-  MapPin,
-  AlertTriangle,
-  FileText,
-  Share2,
-} from 'lucide-react';
+import { ArrowLeft, Play, Share2, AlertTriangle, User, Phone, MapPin } from 'lucide-react';
 import { doctorMockService } from '../../services/doctorMockService';
 import { VitalsPanel } from '../../components/doctor/VitalsPanel';
 import { AITriagePanel } from '../../components/doctor/AITriagePanel';
 import { MedicalTimeline } from '../../components/doctor/MedicalTimeline';
-import { StatusBadge } from '../../components/doctor/StatusBadge';
+import { ReferralDrawer } from '../../components/doctor/ReferralDrawer';
 
 export const PatientClinicalWorkspacePage: React.FC = () => {
   const { patientId } = useParams<{ patientId: string }>();
+  const [isReferralOpen, setIsReferralOpen] = useState(false);
 
   const patient = doctorMockService.getPatient(patientId || 'RC-2026-004821');
   const queueItem = doctorMockService.getQueueItem(patientId || 'RC-2026-004821');
@@ -23,70 +17,79 @@ export const PatientClinicalWorkspacePage: React.FC = () => {
 
   if (!patient) {
     return (
-      <div className="max-w-4xl mx-auto p-8 bg-white border border-slate-200 rounded-lg text-center">
-        <h2 className="text-base font-bold text-slate-800">Unable to locate patient record</h2>
-        <p className="text-xs text-slate-500 mt-1">
+      <div className="max-w-xl mx-auto p-8 bg-white border border-slate-200 rounded-md text-center space-y-3">
+        <h2 className="text-base font-bold text-slate-900">Patient Record Not Found</h2>
+        <p className="text-xs text-slate-500">
           No clinical record found matching identifier "{patientId}".
         </p>
         <Link
           to="/doctor"
-          className="mt-4 inline-flex items-center space-x-1 text-xs font-semibold text-blue-700 hover:text-blue-800"
+          className="inline-flex items-center space-x-1 text-xs font-semibold text-slate-900 hover:underline"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
-          <span>Return to Dashboard Queue</span>
+          <span>Return to Dashboard</span>
         </Link>
       </div>
     );
   }
 
-  // Fallback vitals and triage if patient wasn't in active queue
   const currentVitals = queueItem?.vitals || {
-    temperature: '98.6°F',
-    heartRate: '78 bpm',
-    bloodPressure: '120/80 mmHg',
-    spo2: '98%',
-    respiratoryRate: '16 /min',
-    recordedAt: 'Today',
+    temperature: '102°F',
+    heartRate: '96 bpm',
+    bloodPressure: '138/86 mmHg',
+    spo2: '91%',
+    respiratoryRate: '22 /min',
+    recordedAt: 'Today 08:45 AM',
     recordedBy: 'Sunita Shinde, ANM',
   };
 
   const currentTriage = queueItem?.triage || {
-    riskLevel: 'LOW',
-    priority: 'ROUTINE',
-    reportedIndicators: ['Routine baseline examination'],
-    aiSummary: 'Reported symptoms and vitals are within standard parameters. Routine clinical consultation recommended.',
-    recommendedNextStep: 'Conduct standard physician physical evaluation.',
-    disclaimer: 'Decision-support information generated from reported symptoms and available vitals. Not a diagnosis.',
+    riskLevel: 'HIGH',
+    priority: 'URGENT',
+    reportedIndicators: ['Fever', 'Cough', 'Breathing difficulty', 'Low SpO2'],
+    aiSummary: 'Reported symptoms and vitals indicate elevated risk and warrant prompt clinical evaluation.',
+    recommendedNextStep: 'Prioritize physician assessment.',
+    potentialMissingInfo: 'Duration of symptoms not recorded.',
+    disclaimer: 'Decision-support information based on reported symptoms and available vitals. Not a diagnosis.',
   };
 
-  const chiefComplaint = queueItem?.chiefComplaint || 'Routine medical check-up & health intake';
+  const chiefComplaint = queueItem?.chiefComplaint || 'Breathing difficulty & persistent fever';
   const symptomsDuration = queueItem?.symptomsDuration || '3 days';
-  const symptomsList = queueItem?.symptomsList || ['Routine intake'];
+  const symptomsList = queueItem?.symptomsList || ['Fever', 'Dry cough', 'Dyspnea on exertion'];
+
+  const getLanguageLabel = (code: string) => {
+    if (code === 'mr') return 'Marathi';
+    if (code === 'hi') return 'Hindi';
+    return 'English';
+  };
+
+  const hasAllergies = patient.allergies && !patient.allergies.includes('None reported');
 
   return (
-    <div className="space-y-5 max-w-7xl mx-auto">
-      {/* Top Navigation & Action Header */}
+    <div className="space-y-5 max-w-7xl mx-auto pb-16">
+      {/* Top Back Nav & Quick Action */}
       <div className="flex items-center justify-between">
         <Link
           to="/doctor"
-          className="inline-flex items-center space-x-1 text-xs font-medium text-slate-600 hover:text-slate-900 transition-colors"
+          className="inline-flex items-center space-x-1.5 text-xs text-slate-500 hover:text-slate-900 transition-colors"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           <span>Back to Queue</span>
         </Link>
 
         <div className="flex items-center space-x-2">
-          <Link
-            to={`/doctor/referrals/new?patientId=${patient.id}`}
-            className="px-3 py-1.5 text-xs font-semibold rounded border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 transition-colors inline-flex items-center space-x-1"
+          <button
+            type="button"
+            onClick={() => setIsReferralOpen(true)}
+            className="px-3 py-1.5 text-xs font-medium text-slate-700 hover:text-slate-900 bg-white border border-slate-200 rounded hover:bg-slate-50 transition-colors inline-flex items-center space-x-1.5"
           >
             <Share2 className="w-3.5 h-3.5 text-slate-500" />
             <span>Refer Patient</span>
-          </Link>
+          </button>
 
           <Link
-            to={`/doctor/consultation/${queueItem?.id || 'CQ-101'}`}
-            className="px-4 py-1.5 text-xs font-semibold rounded bg-blue-700 hover:bg-blue-800 text-white transition-colors inline-flex items-center space-x-1.5 shadow-2xs"
+            to={`/doctor/consultation/${queueItem?.id || patient.id}`}
+            className="px-4 py-1.5 text-xs font-semibold text-white bg-slate-900 hover:bg-slate-800 rounded transition-colors inline-flex items-center space-x-1.5"
           >
             <Play className="w-3.5 h-3.5 fill-current" />
             <span>Start Consultation</span>
@@ -94,209 +97,206 @@ export const PatientClinicalWorkspacePage: React.FC = () => {
         </div>
       </div>
 
-      {/* Patient Master Identification Strip */}
-      <div className="bg-white border border-slate-200 rounded-lg p-4 sm:p-5 shadow-2xs">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="flex items-start space-x-3.5">
-            <div className="w-12 h-12 rounded-lg bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-700 font-bold text-base shrink-0">
-              {patient.fullName.charAt(0)}
-            </div>
-            <div>
-              <div className="flex items-center space-x-2 flex-wrap">
-                <h1 className="text-lg font-bold text-slate-900 tracking-tight">
-                  {patient.fullName}
-                </h1>
-                <span className="font-mono text-xs font-bold text-blue-800 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded">
-                  {patient.id}
-                </span>
-                {patient.abhaId && (
-                  <span className="text-3xs font-mono text-slate-500 bg-slate-100 px-2 py-0.5 rounded">
-                    ABHA: {patient.abhaId}
-                  </span>
-                )}
-              </div>
-              <p className="text-xs text-slate-600 mt-0.5">
-                {patient.age} yrs • {patient.gender} • Language:{' '}
-                {patient.preferredLanguage === 'mr'
-                  ? 'Marathi (मराठी)'
-                  : patient.preferredLanguage === 'hi'
-                  ? 'Hindi (हिंदी)'
-                  : 'English'}
-              </p>
-            </div>
+      {/* Patient Master Clinical Header */}
+      <div className="bg-white border border-slate-200 rounded-md p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div className="space-y-1">
+          <div className="flex items-baseline space-x-3">
+            <span className="text-xs text-slate-400 font-medium">Patient:</span>
+            <h1 className="text-lg font-bold text-slate-900 tracking-tight">
+              {patient.fullName}
+            </h1>
+            <span className="font-mono text-xs text-slate-500 font-medium">
+              ID: {patient.id}
+            </span>
           </div>
 
-          <div className="flex flex-wrap items-center gap-4 text-xs border-t md:border-t-0 pt-2 md:pt-0 border-slate-100">
-            <div className="text-right">
-              <span className="text-3xs font-bold text-slate-400 uppercase tracking-wider block">
-                Primary Location
-              </span>
-              <span className="font-medium text-slate-800 flex items-center justify-end space-x-1">
-                <MapPin className="w-3 h-3 text-slate-400" />
-                <span>
-                  {patient.village}, {patient.taluka}, {patient.district}
-                </span>
-              </span>
-            </div>
-
-            <div className="text-right pl-3 border-l border-slate-200">
-              <span className="text-3xs font-bold text-slate-400 uppercase tracking-wider block">
-                Contact Phone
-              </span>
-              <span className="font-mono font-medium text-slate-900">
-                +91 {patient.phone}
-              </span>
-            </div>
-
-            {queueItem && (
-              <div className="text-right pl-3 border-l border-slate-200">
-                <span className="text-3xs font-bold text-slate-400 uppercase tracking-wider block">
-                  Triage Status
-                </span>
-                <div className="mt-0.5">
-                  <StatusBadge type="priority" value={queueItem.priority} />
-                </div>
-              </div>
-            )}
+          <div className="text-xs text-slate-600 flex flex-wrap items-center gap-x-3 gap-y-1">
+            <span>{patient.age} years</span>
+            <span>•</span>
+            <span>{patient.gender}</span>
+            <span>•</span>
+            <span>Preferred language: <strong className="text-slate-800">{getLanguageLabel(patient.preferredLanguage)}</strong></span>
+            <span>•</span>
+            <span>{patient.village}, {patient.taluka}, {patient.district}</span>
           </div>
+        </div>
+
+        <div className="flex items-center space-x-2 shrink-0">
+          <Link
+            to={`/doctor/consultation/${queueItem?.id || patient.id}`}
+            className="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded text-xs font-bold transition-colors inline-flex items-center space-x-1.5 shadow-2xs"
+          >
+            <Play className="w-3.5 h-3.5 fill-current" />
+            <span>Start Consultation</span>
+          </Link>
         </div>
       </div>
 
-      {/* Two-Column Clinical Workstation Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
-        {/* Left Column: Background & Longitudinal Profile (4 cols) */}
-        <div className="lg:col-span-4 space-y-4">
-          {/* Allergies & Chronic Conditions */}
-          <div className="bg-white border border-slate-200 rounded-lg p-4 shadow-2xs space-y-3.5">
-            <h3 className="text-xs font-bold text-slate-900 uppercase tracking-wider pb-2 border-b border-slate-100">
-              Medical Alerts & Conditions
-            </h3>
-
-            {/* Known Allergies */}
-            <div>
-              <span className="text-3xs font-bold text-red-600 uppercase tracking-wider block mb-1">
-                Known Drug Allergies
+      {/* Structured 2-Column Clinical Layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+        {/* ================= LEFT / MAIN COLUMN (8 cols) ================= */}
+        <div className="lg:col-span-8 space-y-4">
+          {/* Current Visit */}
+          <div className="bg-white border border-slate-200 rounded-md p-4 space-y-3">
+            <div className="flex items-center justify-between pb-2 border-b border-slate-100">
+              <h2 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
+                Current Visit
+              </h2>
+              <span className="text-[11px] text-slate-400 font-mono">
+                Intake: Today
               </span>
-              <div className="flex flex-wrap gap-1">
-                {patient.allergies.map((all, idx) => (
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+              <div className="sm:col-span-2">
+                <span className="text-[10px] font-semibold text-slate-500 uppercase tracking-wider block">
+                  Chief Complaint
+                </span>
+                <p className="text-sm font-semibold text-slate-900 mt-0.5">
+                  {chiefComplaint}
+                </p>
+              </div>
+
+              <div>
+                <span className="text-[10px] font-semibold text-slate-500 uppercase tracking-wider block">
+                  Duration
+                </span>
+                <p className="text-sm font-medium text-slate-800 mt-0.5 font-mono">
+                  {symptomsDuration}
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <span className="text-[10px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">
+                Reported Symptoms
+              </span>
+              <div className="flex flex-wrap gap-1.5">
+                {symptomsList.map((s, i) => (
                   <span
-                    key={idx}
-                    className="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-red-50 text-red-800 border border-red-200"
+                    key={i}
+                    className="px-2 py-0.5 rounded text-xs bg-slate-100 text-slate-800 border border-slate-200 font-medium"
                   >
-                    <AlertTriangle className="w-3 h-3 mr-1 text-red-600" />
-                    {all}
+                    {s}
                   </span>
                 ))}
               </div>
             </div>
+          </div>
 
-            {/* Existing Chronic Conditions */}
-            <div>
-              <span className="text-3xs font-bold text-slate-500 uppercase tracking-wider block mb-1">
-                Diagnosed Chronic Conditions
+          {/* Vitals (Temperature, Heart Rate, Blood Pressure, SpO2, Respiratory Rate) */}
+          <VitalsPanel vitals={currentVitals} />
+
+          {/* AI-Assisted Triage (Non-dominant, decision support) */}
+          <AITriagePanel triage={currentTriage} />
+
+          {/* Medical History Timeline */}
+          <MedicalTimeline events={timeline} />
+        </div>
+
+        {/* ================= RIGHT COLUMN: PATIENT SUMMARY (4 cols) ================= */}
+        <div className="lg:col-span-4 space-y-4">
+          {/* Patient Summary Card */}
+          <div className="bg-white border border-slate-200 rounded-md p-4 space-y-4">
+            <div className="flex items-center space-x-2 pb-2 border-b border-slate-100">
+              <User className="w-4 h-4 text-slate-700" />
+              <h2 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
+                Patient Summary
+              </h2>
+            </div>
+
+            {/* Allergies */}
+            <div className="space-y-1">
+              <span className="text-[10px] font-semibold text-slate-500 uppercase tracking-wider block">
+                Allergies
               </span>
-              <div className="flex flex-wrap gap-1">
-                {patient.existingConditions.map((cond, idx) => (
-                  <span
-                    key={idx}
-                    className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-slate-100 text-slate-800 border border-slate-200"
-                  >
-                    {cond}
-                  </span>
-                ))}
-              </div>
+              {hasAllergies ? (
+                <div className="p-2 bg-red-50 border border-red-200 rounded text-xs text-red-900 space-y-0.5">
+                  <div className="font-bold flex items-center space-x-1">
+                    <AlertTriangle className="w-3.5 h-3.5 text-red-600" />
+                    <span>Known Drug / Food Allergies</span>
+                  </div>
+                  <div>{patient.allergies.join(', ')}</div>
+                </div>
+              ) : (
+                <p className="text-xs text-slate-700 bg-slate-50 border border-slate-200 p-2 rounded">
+                  None reported
+                </p>
+              )}
+            </div>
+
+            {/* Existing Conditions */}
+            <div className="space-y-1">
+              <span className="text-[10px] font-semibold text-slate-500 uppercase tracking-wider block">
+                Existing Conditions
+              </span>
+              {patient.existingConditions && patient.existingConditions.length > 0 && !patient.existingConditions.includes('None reported') ? (
+                <ul className="space-y-1 text-xs">
+                  {patient.existingConditions.map((cond) => (
+                    <li key={cond} className="p-1.5 bg-slate-50 border border-slate-200 rounded text-slate-800 font-medium">
+                      {cond}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="text-xs text-slate-500 italic">None reported</p>
+              )}
             </div>
 
             {/* Current Medications */}
-            <div>
-              <span className="text-3xs font-bold text-slate-500 uppercase tracking-wider block mb-1">
-                Current Active Medications
+            <div className="space-y-1">
+              <span className="text-[10px] font-semibold text-slate-500 uppercase tracking-wider block">
+                Current Medications
               </span>
-              <div className="space-y-1">
-                {patient.currentMedications.map((med, idx) => (
-                  <div
-                    key={idx}
-                    className="p-1.5 rounded text-xs font-medium bg-slate-50 border border-slate-200 text-slate-800"
-                  >
-                    {med}
-                  </div>
-                ))}
-              </div>
+              {patient.currentMedications && patient.currentMedications.length > 0 && !patient.currentMedications.includes('None reported') ? (
+                <ul className="space-y-1 text-xs font-mono">
+                  {patient.currentMedications.map((med) => (
+                    <li key={med} className="p-1.5 bg-slate-50 border border-slate-200 rounded text-slate-800">
+                      {med}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="text-xs text-slate-500 italic">None reported</p>
+              )}
             </div>
 
             {/* Emergency Contact */}
-            <div className="pt-2 border-t border-slate-100 text-xs">
-              <span className="text-3xs font-bold text-slate-400 uppercase tracking-wider block mb-0.5">
+            <div className="pt-2 border-t border-slate-100 space-y-1 text-xs">
+              <span className="text-[10px] font-semibold text-slate-500 uppercase tracking-wider block">
                 Emergency Contact
               </span>
-              <span className="font-semibold text-slate-900 block">
-                {patient.emergencyContact.name} ({patient.emergencyContact.relation})
-              </span>
-              <span className="font-mono text-slate-600 text-2xs">
-                +91 {patient.emergencyContact.phone}
-              </span>
-            </div>
-          </div>
-        </div>
-
-        {/* Right Column: Current Visit, Vitals & AI Triage (8 cols) */}
-        <div className="lg:col-span-8 space-y-4">
-          {/* Current Visit Symptoms */}
-          <div className="bg-white border border-slate-200 rounded-lg p-4 sm:p-5 shadow-2xs">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-100 mb-3">
-              <div className="flex items-center space-x-2">
-                <FileText className="w-4 h-4 text-teal-700" />
-                <h3 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
-                  Current Presentation & Chief Complaint
-                </h3>
+              <div className="font-semibold text-slate-900">
+                {patient.emergencyContact?.name} ({patient.emergencyContact?.relation})
               </div>
-              <span className="text-2xs font-semibold text-slate-500">
-                Duration: <strong className="text-slate-800">{symptomsDuration}</strong>
-              </span>
+              <div className="font-mono text-slate-600">
+                {patient.emergencyContact?.phone}
+              </div>
             </div>
 
-            <div className="bg-slate-50 border border-slate-200 rounded-md p-3 mb-3">
-              <span className="text-3xs font-bold text-slate-400 uppercase tracking-wider block mb-0.5">
-                Recorded Chief Complaint
+            {/* Location & ABHA */}
+            <div className="pt-2 border-t border-slate-100 space-y-1 text-xs">
+              <span className="text-[10px] font-semibold text-slate-500 uppercase tracking-wider block">
+                Demographics & ABHA
               </span>
-              <p className="text-sm font-semibold text-slate-900 leading-relaxed">
-                "{chiefComplaint}"
-              </p>
-            </div>
-
-            <div>
-              <span className="text-3xs font-bold text-slate-400 uppercase tracking-wider block mb-1">
-                Reported Symptom Cluster
-              </span>
-              <div className="flex flex-wrap gap-1.5">
-                {symptomsList.map((sym, i) => (
-                  <span
-                    key={i}
-                    className="px-2.5 py-1 rounded bg-slate-100 text-slate-800 text-xs font-medium border border-slate-200"
-                  >
-                    • {sym}
-                  </span>
-                ))}
+              <div className="text-slate-600">
+                Village: <span className="font-medium text-slate-900">{patient.village}, {patient.taluka}</span>
+              </div>
+              <div className="text-slate-600 font-mono text-[11px]">
+                ABHA: {patient.abhaId || '91-4421-8890-1204'}
               </div>
             </div>
           </div>
-
-          {/* Vitals Panel */}
-          <VitalsPanel vitals={currentVitals} />
-
-          {/* AI-Assisted Triage Panel */}
-          <AITriagePanel
-            triage={currentTriage}
-            onReviewSymptoms={() => {
-              // Smooth scroll to chief complaint
-              window.scrollTo({ top: 180, behavior: 'smooth' });
-            }}
-          />
         </div>
       </div>
 
-      {/* Longitudinal Medical History Timeline */}
-      <MedicalTimeline events={timeline} />
+      {/* Slide-over Referral Drawer */}
+      <ReferralDrawer
+        isOpen={isReferralOpen}
+        onClose={() => setIsReferralOpen(false)}
+        patient={patient}
+        initialReason={chiefComplaint}
+      />
     </div>
   );
 };

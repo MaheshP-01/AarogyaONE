@@ -36,7 +36,7 @@ export const DoctorLayout: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 antialiased">
+    <div className="min-h-screen flex flex-col bg-[#fcfcfc] text-slate-900 antialiased">
       {/* Top Header */}
       <DoctorHeader
         currentLanguage={currentLanguage}
@@ -49,17 +49,16 @@ export const DoctorLayout: React.FC = () => {
       />
 
       {/* Main Body */}
-      <div className="flex-1 flex max-w-7xl w-full mx-auto">
+      <div className="flex-1 flex w-full">
         {/* Compact Clinical Sidebar */}
         <DoctorSidebar
           isOpen={isSidebarOpen}
           onClose={() => setIsSidebarOpen(false)}
           urgentCount={kpis.urgentCount}
-          t={t}
         />
 
         {/* Clinical Content Area */}
-        <main className="flex-1 min-w-0 p-4 sm:p-6 lg:p-7">
+        <main className="flex-1 min-w-0 px-4 sm:px-6 lg:px-8 py-6 max-w-7xl mx-auto w-full">
           <Outlet context={{ currentLanguage, t, isOnline }} />
         </main>
       </div>
