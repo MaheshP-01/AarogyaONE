@@ -135,6 +135,36 @@ export interface TranslationDictionary {
   errPinInvalid: string;
   errEmergencyPhoneInvalid: string;
   errConsentRequired: string;
+
+  // Doctor Portal
+  doctorPortalTitle: string;
+  doctorFacility: string;
+  doctorName: string;
+  doctorSpecialty: string;
+  navOverview: string;
+  navDoctorQueue: string;
+  navDoctorPatients: string;
+  navDoctorTeleconsult: string;
+  navDoctorReferrals: string;
+  navDoctorFollowUps: string;
+  navDoctorSettings: string;
+  doctorGreeting: string;
+  doctorGreetingSub: string;
+  kpiTodayQueue: string;
+  kpiUrgent: string;
+  kpiTeleconsults: string;
+  kpiReferrals: string;
+  kpiFollowUps: string;
+  urgentCasesHeading: string;
+  allQueueHeading: string;
+  startConsultBtn: string;
+  reviewCaseBtn: string;
+  aiTriageHeading: string;
+  aiTriageSub: string;
+  completeConsultBtn: string;
+  saveDraftBtn: string;
+  referPatientBtn: string;
+  scheduleFollowUpBtn: string;
 }
 
 export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
@@ -273,6 +303,36 @@ export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
     errPinInvalid: 'Enter a valid 6-digit PIN code',
     errEmergencyPhoneInvalid: 'Enter a valid 10-digit emergency contact number',
     errConsentRequired: 'You must confirm that the information entered is accurate before submitting.',
+
+    // Doctor Portal
+    doctorPortalTitle: 'Doctor Clinical Workstation',
+    doctorFacility: 'District Hospital, Dhule',
+    doctorName: 'Dr. Anjali Sharma',
+    doctorSpecialty: 'General Physician (MD Medicine)',
+    navOverview: 'Overview',
+    navDoctorQueue: 'Consultation Queue',
+    navDoctorPatients: 'Patients',
+    navDoctorTeleconsult: 'Teleconsultations',
+    navDoctorReferrals: 'Referrals',
+    navDoctorFollowUps: 'Follow-ups',
+    navDoctorSettings: 'Settings',
+    doctorGreeting: 'Good morning, Dr. Anjali',
+    doctorGreetingSub: "Here's what needs your attention today.",
+    kpiTodayQueue: "Today's Queue",
+    kpiUrgent: 'Urgent Cases',
+    kpiTeleconsults: 'Teleconsultations',
+    kpiReferrals: 'Pending Referrals',
+    kpiFollowUps: 'Follow-ups Today',
+    urgentCasesHeading: 'Urgent Cases Requiring Review',
+    allQueueHeading: "Today's Consultation Queue",
+    startConsultBtn: 'Start Consultation',
+    reviewCaseBtn: 'Review',
+    aiTriageHeading: 'AI-Assisted Triage',
+    aiTriageSub: 'Decision-support information generated from reported symptoms and available vitals. Not a diagnosis.',
+    completeConsultBtn: 'Complete Consultation',
+    saveDraftBtn: 'Save Draft',
+    referPatientBtn: 'Refer Patient',
+    scheduleFollowUpBtn: 'Schedule Follow-up',
   },
 
   mr: {
@@ -410,6 +470,36 @@ export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
     errPinInvalid: 'कृपया वैध ६ अंकी पिन कोड प्रविष्ट करा',
     errEmergencyPhoneInvalid: 'कृपया वैध १० अंकी तातडीचा फोन नंबर प्रविष्ट करा',
     errConsentRequired: 'नोंदणी पूर्ण करण्यासाठी कृपया माहितीची खात्री करा.',
+
+    // Doctor Portal
+    doctorPortalTitle: 'डॉक्टर क्लिनिकल वर्कस्टेशन',
+    doctorFacility: 'जिल्हा रुग्णालय, धुळे',
+    doctorName: 'डॉ. अंजली शर्मा',
+    doctorSpecialty: 'जनरल फिजिशियन (एमडी मेडिसिन)',
+    navOverview: 'आढावा',
+    navDoctorQueue: 'तपासणी रांग',
+    navDoctorPatients: 'रुग्ण यादी',
+    navDoctorTeleconsult: 'टेलिकन्सल्टेशन',
+    navDoctorReferrals: 'रेफरल्स',
+    navDoctorFollowUps: 'पाठपुरावा',
+    navDoctorSettings: 'सेटिंग्ज',
+    doctorGreeting: 'शुभ प्रभात, डॉ. अंजली',
+    doctorGreetingSub: 'आजच्या रुग्णांचे आणि तपासणीचे तपशील खालीलप्रमाणे आहेत.',
+    kpiTodayQueue: 'आजची रांग',
+    kpiUrgent: 'तातडीचे रुग्ण',
+    kpiTeleconsults: 'टेलिकन्सल्टेशन्स',
+    kpiReferrals: 'प्रलंबित रेफरल्स',
+    kpiFollowUps: 'आजचा पाठपुरावा',
+    urgentCasesHeading: 'त्वरित लक्ष देण्याची गरज असलेले रुग्ण',
+    allQueueHeading: 'आजची तपासणी रांग',
+    startConsultBtn: 'तपासणी सुरू करा',
+    reviewCaseBtn: 'तपासा',
+    aiTriageHeading: 'एआय-साहाय्यित ट्रायज',
+    aiTriageSub: 'नोंदवलेली लक्षणे आणि तपासण्यांवर आधारित वैद्यकीय सहाय्यक माहिती. हे अंतिम निदान नाही.',
+    completeConsultBtn: 'तपासणी पूर्ण करा',
+    saveDraftBtn: 'मसुदा साठवा',
+    referPatientBtn: 'रुग्ण रेफर करा',
+    scheduleFollowUpBtn: 'फॉलो-अप तारीख द्या',
   },
 
   hi: {
@@ -547,5 +637,35 @@ export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
     errPinInvalid: 'कृपया मान्य ६ अंकों का पिन कोड दर्ज करें',
     errEmergencyPhoneInvalid: 'कृपया मान्य १० अंकों का आपातकालीन फोन नंबर दर्ज करें',
     errConsentRequired: 'पंजीकरण पूरा करने के लिए कृपया जानकारी की पुष्टि करें।',
+
+    // Doctor Portal
+    doctorPortalTitle: 'डॉक्टर क्लिनिकल वर्कस्टेशन',
+    doctorFacility: 'जिला अस्पताल, धुले',
+    doctorName: 'डॉ. अंजलि शर्मा',
+    doctorSpecialty: 'जनरल फिजिशियन (एमडी मेडिसिन)',
+    navOverview: 'अवलोकन',
+    navDoctorQueue: 'परामर्श कतार',
+    navDoctorPatients: 'मरीज सूची',
+    navDoctorTeleconsult: 'टेलीकंसल्टेशन',
+    navDoctorReferrals: 'रेफरल्स',
+    navDoctorFollowUps: 'फॉलो-अप',
+    navDoctorSettings: 'सेटिंग्स',
+    doctorGreeting: 'शुभ प्रभात, डॉ. अंजलि',
+    doctorGreetingSub: 'आज जिन मरीजों पर आपका ध्यान चाहिए, उनका विवरण नीचे है।',
+    kpiTodayQueue: 'आज की कतार',
+    kpiUrgent: 'अति आवश्यक मामले',
+    kpiTeleconsults: 'टेलीकंसल्टेशन्स',
+    kpiReferrals: 'लंबित रेफरल्स',
+    kpiFollowUps: 'आज का फॉलो-अप',
+    urgentCasesHeading: 'तत्काल ध्यान देने योग्य मरीज',
+    allQueueHeading: 'आज की परामर्श कतार',
+    startConsultBtn: 'परामर्श शुरू करें',
+    reviewCaseBtn: 'जांचें',
+    aiTriageHeading: 'एआई-सहायित ट्रायज',
+    aiTriageSub: 'दर्ज किए गए लक्षणों और विटल्स पर आधारित सहायक जानकारी। यह अंतिम निदान नहीं है।',
+    completeConsultBtn: 'परामर्श पूरा करें',
+    saveDraftBtn: 'ड्राफ्ट सहेजें',
+    referPatientBtn: 'मरीज रेफर करें',
+    scheduleFollowUpBtn: 'फॉलो-अप शेड्यूल करें',
   },
 };
