@@ -1,0 +1,128 @@
+export interface DistrictInfo {
+  name: string;
+  nameMr: string;
+  nameHi: string;
+  talukas: string[];
+}
+
+export const MAHARASHTRA_DISTRICTS: DistrictInfo[] = [
+  {
+    name: 'Dhule',
+    nameMr: 'धुळे',
+    nameHi: 'धुले',
+    talukas: ['Shirpur', 'Sakri', 'Sindkheda', 'Dhule'],
+  },
+  {
+    name: 'Jalgaon',
+    nameMr: 'जळगाव',
+    nameHi: 'जलगांव',
+    talukas: [
+      'Amalner',
+      'Bhadgaon',
+      'Bhusawal',
+      'Bodwad',
+      'Chalisgaon',
+      'Chopda',
+      'Dharangaon',
+      'Erandol',
+      'Jalgaon',
+      'Jamner',
+      'Muktainagar',
+      'Pachora',
+      'Parola',
+      'Raver',
+      'Yawal',
+    ],
+  },
+  {
+    name: 'Nandurbar',
+    nameMr: 'नंदुरबार',
+    nameHi: 'नंदुरबार',
+    talukas: ['Akkalkuwa', 'Akrani (Dhadgaon)', 'Nandurbar', 'Navapur', 'Shahada', 'Taloda'],
+  },
+  {
+    name: 'Nashik',
+    nameMr: 'नाशिक',
+    nameHi: 'नासिक',
+    talukas: [
+      'Baglan (Satana)',
+      'Chandwad',
+      'Deola',
+      'Dindori',
+      'Igatpuri',
+      'Kalwan',
+      'Malegaon',
+      'Nandgaon',
+      'Nashik',
+      'Niphad',
+      'Peint',
+      'Sinnar',
+      'Surgana',
+      'Trimbakeshwar',
+      'Yeola',
+    ],
+  },
+  {
+    name: 'Pune',
+    nameMr: 'पुणे',
+    nameHi: 'पुणे',
+    talukas: [
+      'Ambegaon',
+      'Baramati',
+      'Bhor',
+      'Daund',
+      'Haveli',
+      'Indapur',
+      'Junnar',
+      'Khed',
+      'Maval',
+      'Mulshi',
+      'Pune City',
+      'Purandar',
+      'Shirur',
+      'Velhe',
+    ],
+  },
+  {
+    name: 'Ahmednagar (Ahilyanagar)',
+    nameMr: 'अहिल्यानगर (अहमदनगर)',
+    nameHi: 'अहिल्यानगर (अहमदनगर)',
+    talukas: ['Akole', 'Jamkhed', 'Karjat', 'Kopargaon', 'Newasa', 'Parner', 'Pathardi', 'Rahata', 'Rahuri', 'Sangamner', 'Shevgaon', 'Shrigonda', 'Shrirampur'],
+  },
+  {
+    name: 'Chhatrapati Sambhajinagar (Aurangabad)',
+    nameMr: 'छत्रपती संभाजीनगर',
+    nameHi: 'छत्रपति संभाजीनगर',
+    talukas: ['Aurangabad', 'Gangapur', 'Kannad', 'Khuldabad', 'Paithan', 'Phulambri', 'Sillod', 'Soegaon', 'Vaijapur'],
+  },
+  {
+    name: 'Solapur',
+    nameMr: 'सोलापूर',
+    nameHi: 'सोलापूर',
+    talukas: ['Barshi', 'Karmala', 'Madha', 'Malshiras', 'Mangalwedha', 'Mohol', 'Pandharpur', 'Sangole', 'Solapur North', 'Solapur South'],
+  },
+  {
+    name: 'Kolhapur',
+    nameMr: 'कोल्हापूर',
+    nameHi: 'कोल्हापुर',
+    talukas: ['Ajara', 'Bavda', 'Bhudargad', 'Chandgad', 'Gadhinglaj', 'Hatkanangle', 'Kagal', 'Karvir', 'Panhala', 'Radhanagari', 'Shahuwadi', 'Shirol'],
+  },
+  {
+    name: 'Amravati',
+    nameMr: 'अमरावती',
+    nameHi: 'अमरावती',
+    talukas: ['Achalpur', 'Amravati', 'Anjangaon Surji', 'Bhatkuli', 'Chandur Railway', 'Chandurbazar', 'Chikhaldara', 'Daryapur', 'Dhamangaon Railway', 'Dharni', 'Morshi', 'Nandgaon-Khandeshwar', 'Teosa', 'Warud'],
+  },
+  {
+    name: 'Gadchiroli',
+    nameMr: 'गडचिरोली',
+    nameHi: 'गडचिरोली',
+    talukas: ['Aheri', 'Armori', 'Bhamragad', 'Chamorshi', 'Desaiganj (Wadsa)', 'Dhanora', 'Etapalli', 'Gadchiroli', 'Korchi', 'Kurkheda', 'Mulchera', 'Sironcha'],
+  },
+  {
+    name: 'Other Maharashtra District',
+    nameMr: 'इतर जिल्हा',
+    nameHi: 'अन्य जिला',
+    talukas: ['Other / इतर'],
+  },
+];

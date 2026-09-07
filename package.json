@@ -4,6 +4,7 @@
   "private": true,
   "description": "RuralCare Connect — AI-assisted healthcare platform for rural communities (SIH 2026)",
   "scripts": {
+    "dev": "npm --prefix frontend run dev",
     "frontend:dev": "npm --prefix frontend run dev",
     "frontend:build": "npm --prefix frontend run build",
     "backend:dev": "npm --prefix backend run dev",
