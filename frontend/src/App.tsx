@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { MainLayout } from './layouts/MainLayout';
 import { ClinicalLayout } from './layouts/ClinicalLayout';
+import { PatientRegistrationLayout } from './layouts/PatientRegistrationLayout';
 import { LandingPage } from './pages/LandingPage';
 import { HealthWorkerPage } from './pages/HealthWorkerPage';
 import { PatientRegistrationPage } from './pages/PatientRegistrationPage';
@@ -15,16 +16,17 @@ export const App: React.FC = () => {
         <Route element={<MainLayout />}>
           <Route path="/" element={<LandingPage />} />
           <Route path="/doctor" element={<DoctorPage />} />
-          <Route path="/patient" element={<Navigate to="/patients/register" replace />} />
         </Route>
 
-        {/* Clinical Application Portal */}
+        {/* Health Worker Dashboard Portal (With Health Worker Station Sidebar) */}
         <Route element={<ClinicalLayout />}>
-          {/* Health Worker Dashboard Portal */}
           <Route path="/health-worker" element={<HealthWorkerPage />} />
+        </Route>
 
-          {/* Dedicated Patient Registration Tab / Page */}
+        {/* Completely Separate Patient Registration Portal (Without Health Worker Sidebar) */}
+        <Route element={<PatientRegistrationLayout />}>
           <Route path="/patients/register" element={<PatientRegistrationPage />} />
+          <Route path="/patient" element={<PatientRegistrationPage />} />
         </Route>
 
         {/* Catch-all Fallback */}

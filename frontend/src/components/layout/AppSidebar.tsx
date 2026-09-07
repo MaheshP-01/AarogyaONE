@@ -1,13 +1,13 @@
 import React from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, Link } from 'react-router-dom';
 import {
   LayoutDashboard,
-  UserPlus,
   Calendar,
   Activity,
   Share2,
   Clock,
   Home,
+  ExternalLink,
 } from 'lucide-react';
 import { TranslationDictionary } from '../../utils/translations';
 
@@ -27,14 +27,6 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({ isOpen, onClose, t }) =>
       to: '/health-worker',
       icon: LayoutDashboard,
       active: location.pathname === '/health-worker',
-    },
-    {
-      id: 'registration',
-      label: t.navRegistration,
-      to: '/patients/register',
-      icon: UserPlus,
-      badge: t.newBadge,
-      active: location.pathname === '/patients/register',
     },
     {
       id: 'appointments',
@@ -90,7 +82,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({ isOpen, onClose, t }) =>
         <div className="p-3">
           {/* Section title */}
           <div className="px-3 py-2 text-2xs font-bold text-slate-400 uppercase tracking-wider">
-            Clinical Workflow
+            Health Worker Station
           </div>
 
           <nav className="space-y-0.5">
@@ -117,11 +109,6 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({ isOpen, onClose, t }) =>
                       />
                       <span>{item.label}</span>
                     </div>
-                    {item.badge && (
-                      <span className="px-1.5 py-0.5 text-3xs font-bold uppercase rounded bg-teal-700 text-white">
-                        {item.badge}
-                      </span>
-                    )}
                   </NavLink>
                 );
               }
@@ -143,6 +130,20 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({ isOpen, onClose, t }) =>
               );
             })}
           </nav>
+
+          {/* Quick External Link to Separate Patient Registration */}
+          <div className="mt-4 pt-3 border-t border-slate-100 px-1">
+            <span className="text-3xs font-semibold text-slate-400 uppercase tracking-wider block mb-1.5">
+              Public Portal
+            </span>
+            <Link
+              to="/patients/register"
+              className="flex items-center justify-between px-2.5 py-1.5 text-xs text-slate-600 hover:text-teal-800 hover:bg-teal-50/70 rounded-md border border-slate-200 transition-colors"
+            >
+              <span>Patient Portal</span>
+              <ExternalLink className="w-3 h-3 text-slate-400" />
+            </Link>
+          </div>
         </div>
 
         {/* Bottom utility / Home link */}
