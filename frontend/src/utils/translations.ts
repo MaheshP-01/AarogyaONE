@@ -170,7 +170,7 @@ export interface TranslationDictionary {
 export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
   en: {
     // Brand & Header
-    appTitle: 'RuralCare Connect',
+    appTitle: 'ArogyaOne',
     appSubtitle: 'Public Healthcare Access Platform',
     onlineStatus: 'Online',
     offlineStatus: 'Offline — Data will sync when connection returns',
@@ -337,7 +337,7 @@ export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
 
   mr: {
     // Brand & Header
-    appTitle: 'रूरलकेअर कनेक्ट',
+    appTitle: 'आरोग्यवन (ArogyaOne)',
     appSubtitle: 'सार्वजनिक आरोग्य सेवा मंच',
     onlineStatus: 'ऑनलाइन',
     offlineStatus: 'ऑफलाइन — इंटरनेट सुरू झाल्यावर डेटा सिंक होईल',
@@ -504,7 +504,7 @@ export const TRANSLATIONS: Record<LanguageCode, TranslationDictionary> = {
 
   hi: {
     // Brand & Header
-    appTitle: 'रूरलकेयर कनेक्ट',
+    appTitle: 'आरोग्यवन (ArogyaOne)',
     appSubtitle: 'सार्वजनिक स्वास्थ्य सेवा प्लेटफॉर्म',
     onlineStatus: 'ऑनलाइन',
     offlineStatus: 'ऑफलाइन — इंटरनेट शुरू होने पर डेटा सिंक होगा',

@@ -2,7 +2,7 @@
   "name": "ruralcare-connect-monorepo",
   "version": "0.1.0",
   "private": true,
-  "description": "RuralCare Connect — AI-assisted healthcare platform for rural communities (SIH 2026)",
+  "description": "ArogyaOne — AI-assisted healthcare platform for rural communities (SIH 2026)",
   "scripts": {
     "dev": "npm --prefix frontend run dev",
     "frontend:dev": "npm --prefix frontend run dev",

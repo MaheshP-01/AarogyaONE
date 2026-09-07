@@ -143,7 +143,7 @@ export const PatientRegistrationLayout: React.FC = () => {
 
       {/* Clean Footer */}
       <footer className="border-t border-slate-200 bg-white py-4 text-center text-2xs text-slate-400">
-        <p>RuralCare Connect • Citizen Digital Health Portal • Maharashtra PHC Network</p>
+        <p>ArogyaOne • Citizen Digital Health Portal • Maharashtra PHC Network</p>
       </footer>
     </div>
   );

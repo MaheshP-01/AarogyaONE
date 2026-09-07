@@ -667,7 +667,7 @@ class DoctorMockService {
         title: 'Initial Registration & Vitals Intake',
         facility: 'Shirpur Rural PHC / Field Station',
         doctorOrWorker: 'Sunita Shinde, ANM',
-        details: 'Patient registered into RuralCare Connect digital health records platform.',
+        details: 'Patient registered into ArogyaOne digital health records platform.',
       },
     ];
   }

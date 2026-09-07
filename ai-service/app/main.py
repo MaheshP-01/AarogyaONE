@@ -10,8 +10,8 @@ from app.api.routes import router as api_router
 load_dotenv()
 
 app = FastAPI(
-  title="RuralCare Connect AI Service",
-  description="AI decision support microservice for RuralCare Connect (SIH 2026)",
+  title="ArogyaOne AI Service",
+  description="AI decision support microservice for ArogyaOne (SIH 2026)",
   version="0.1.0",
 )
 
@@ -39,7 +39,7 @@ app.include_router(api_router, prefix="/api/v1")
 @app.get("/")
 async def root():
   return {
-    "name": "RuralCare Connect AI Service",
+    "name": "ArogyaOne AI Service",
     "version": "0.1.0",
     "status": "online",
     "health_endpoint": "/health",

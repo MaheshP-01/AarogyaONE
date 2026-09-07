@@ -23,7 +23,7 @@ export const createApp = (): Application => {
   // Root endpoint info
   app.get('/', (_req: Request, res: Response) => {
     res.status(200).json({
-      name: 'RuralCare Connect REST API',
+      name: 'ArogyaOne REST API',
       version: '0.1.0',
       description: 'AI-assisted rural healthcare platform backend foundation',
       health: '/api/health',

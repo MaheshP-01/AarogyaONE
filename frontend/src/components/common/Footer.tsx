@@ -24,7 +24,7 @@ export const Footer: React.FC = () => {
               <div>
                 <p className="font-semibold text-amber-300 mb-1">Clinical Decision Support Disclaimer</p>
                 <p>
-                  RuralCare Connect utilizes AI exclusively for symptom summarization, triage prioritization, multilingual
+                  ArogyaOne utilizes AI exclusively for symptom summarization, triage prioritization, multilingual
                   translation, and structured workflow suggestions. AI is NOT a diagnostic system. All medical decisions,
                   clinical diagnoses, and prescriptions remain the sole responsibility of qualified healthcare professionals.
                 </p>
@@ -34,7 +34,7 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
-          <p>© {new Date().getFullYear()} RuralCare Connect — Smart India Hackathon (SIH) 2026 MVP</p>
+          <p>© {new Date().getFullYear()} ArogyaOne — Smart India Hackathon (SIH) 2026 MVP</p>
           <div className="flex items-center space-x-4">
             <span>Step 1: Foundation Baseline</span>
             <span>•</span>

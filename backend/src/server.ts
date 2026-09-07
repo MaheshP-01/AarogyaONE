@@ -9,7 +9,7 @@ const startServer = async (): Promise<void> => {
   const app = createApp();
 
   const server = app.listen(config.port, () => {
-    console.log(`[Backend] RuralCare Connect API running on port ${config.port} (${config.env})`);
+    console.log(`[Backend] ArogyaOne API running on port ${config.port} (${config.env})`);
     console.log(`[Backend] Health check available at: http://localhost:${config.port}/api/health`);
   });
 

@@ -93,11 +93,11 @@ export const DoctorSidebar: React.FC<DoctorSidebarProps> = ({
           <div className="h-13 px-4 flex items-center border-b border-slate-100">
             <NavLink to="/doctor" className="flex items-center space-x-2.5">
               <div className="w-6 h-6 rounded bg-slate-900 text-white flex items-center justify-center font-semibold text-xs shrink-0">
-                RC
+                AO
               </div>
               <div className="flex flex-col">
                 <span className="text-xs font-bold text-slate-900 tracking-tight leading-none">
-                  RuralCare
+                  ArogyaOne
                 </span>
                 <span className="text-[10px] text-slate-400 font-medium tracking-wide mt-0.5 leading-none">
                   Public Health Platform
@@ -162,7 +162,7 @@ export const DoctorSidebar: React.FC<DoctorSidebarProps> = ({
               href="#help"
               onClick={(e) => {
                 e.preventDefault();
-                alert('RuralCare Clinical Support Desk: Call 1800-233-0422 (Toll Free) or contact District Health Informatics Cell.');
+                alert('ArogyaOne Clinical Support Desk: Call 1800-233-0422 (Toll Free) or contact District Health Informatics Cell.');
               }}
               className="flex items-center space-x-2.5 px-2.5 py-1.5 rounded text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors"
             >

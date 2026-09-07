@@ -1,4 +1,4 @@
-# RuralCare Connect 🏥
+# ArogyaOne 🏥
 
 > **AI-Assisted Rural Healthcare Platform for Underserved Communities in Maharashtra**  
 > *Smart India Hackathon (SIH) 2026 MVP*
@@ -6,7 +6,7 @@
 ---
 
 ## 1. Project Overview
-**RuralCare Connect** is a digital healthcare platform designed to bridge critical gaps in primary healthcare delivery across rural Maharashtra. It establishes a real-time, unified workflow between:
+**ArogyaOne** is a digital healthcare platform designed to bridge critical gaps in primary healthcare delivery across rural Maharashtra. It establishes a real-time, unified workflow between:
 * **Frontline Health Workers (ASHA / ANM / Community Health Officers)** stationed at village sub-centers
 * **Consulting Medical Officers & Specialists** at Primary Health Centres (PHCs), Community Health Centres (CHCs), and District Hospitals
 * **Rural Patients & Families** needing timely, affordable, and continuous care

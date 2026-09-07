@@ -1,6 +1,6 @@
 import { LanguageOption, RoleCardItem } from '../types';
 
-export const APP_NAME = 'RuralCare Connect';
+export const APP_NAME = 'ArogyaOne';
 export const APP_TAGLINE = 'AI-Assisted Rural Healthcare Platform';
 export const APP_DESCRIPTION =
   'Connecting rural patients, frontline health workers and doctors for timely, continuous and accessible healthcare.';
