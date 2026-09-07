@@ -44,17 +44,17 @@ export const ROLE_CARDS: RoleCardItem[] = [
   },
   {
     id: 'patient',
-    title: 'Patient',
-    roleName: 'Citizen / Family Member',
-    subtitle: 'Self-Care & Health Record',
+    title: 'Patient Portal',
+    roleName: 'Citizen / Beneficiary',
+    subtitle: 'Patient Registration & Health Record',
     description:
-      'Access your longitudinal health records, review prescribed follow-ups, and receive multilingual consultation summaries in Marathi or Hindi.',
-    path: '/patient',
+      'Register for a unique digital health ID, create longitudinal health records, and access care across rural PHCs and hospitals in Maharashtra.',
+    path: '/patients/register',
     features: [
-      'Digital Health Card (ABHA-ready)',
-      'Multilingual Summary View',
-      'Follow-up & Prescription Log',
-      'Offline Accessible Card'
+      'Digital Patient Registration',
+      'Unique Health ID (RC-2026)',
+      'Multilingual Records (MR/HI/EN)',
+      'Offline-Ready Health Records'
     ]
   }
 ];

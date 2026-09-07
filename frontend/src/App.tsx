@@ -6,7 +6,6 @@ import { LandingPage } from './pages/LandingPage';
 import { HealthWorkerPage } from './pages/HealthWorkerPage';
 import { PatientRegistrationPage } from './pages/PatientRegistrationPage';
 import { DoctorPage } from './pages/DoctorPage';
-import { PatientPage } from './pages/PatientPage';
 
 export const App: React.FC = () => {
   return (
@@ -16,7 +15,7 @@ export const App: React.FC = () => {
         <Route element={<MainLayout />}>
           <Route path="/" element={<LandingPage />} />
           <Route path="/doctor" element={<DoctorPage />} />
-          <Route path="/patient" element={<PatientPage />} />
+          <Route path="/patient" element={<Navigate to="/patients/register" replace />} />
         </Route>
 
         {/* Clinical Application Portal */}
