@@ -78,7 +78,7 @@ export const HealthWorkerPage: React.FC = () => {
       </div>
 
       {/* Operational Stats Grid */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5">
+      <div className="grid grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-3.5">
         <div className="p-4 bg-white border border-slate-200 rounded-lg shadow-2xs">
           <div className="flex items-center justify-between text-slate-400 mb-1.5">
             <span className="text-xs font-medium text-slate-600">Total Patients</span>
@@ -90,25 +90,49 @@ export const HealthWorkerPage: React.FC = () => {
           <span className="text-2xs text-slate-400 mt-1 block">In village registry</span>
         </div>
 
-        <div className="p-4 bg-white border border-slate-200 rounded-lg shadow-2xs">
+        <Link
+          to="/health-worker/triage"
+          className="p-4 bg-white border border-slate-200 hover:border-amber-400 rounded-lg shadow-2xs transition-all cursor-pointer block"
+        >
           <div className="flex items-center justify-between text-slate-400 mb-1.5">
             <span className="text-xs font-medium text-slate-600">Pending Triage</span>
             <Activity className="w-4 h-4 text-amber-600" />
           </div>
           <div className="text-2xl font-bold text-slate-900">7</div>
-          <span className="text-2xs text-amber-600 mt-1 block font-medium">Awaiting assessment</span>
-        </div>
+          <span className="text-2xs text-amber-600 mt-1 block font-medium hover:underline">
+            Awaiting assessment →
+          </span>
+        </Link>
 
-        <div className="p-4 bg-white border border-slate-200 rounded-lg shadow-2xs">
+        <Link
+          to="/health-worker/appointments"
+          className="p-4 bg-white border border-slate-200 hover:border-teal-400 rounded-lg shadow-2xs transition-all cursor-pointer block"
+        >
           <div className="flex items-center justify-between text-slate-400 mb-1.5">
-            <span className="text-xs font-medium text-slate-600">Scheduled Consults</span>
-            <Calendar className="w-4 h-4 text-blue-600" />
+            <span className="text-xs font-medium text-slate-600">Appointments</span>
+            <Calendar className="w-4 h-4 text-teal-700" />
           </div>
-          <div className="text-2xl font-bold text-slate-900">3</div>
-          <span className="text-2xs text-slate-400 mt-1 block">Doctor appointments</span>
-        </div>
+          <div className="text-2xl font-bold text-slate-900">12</div>
+          <span className="text-2xs text-teal-700 mt-1 block font-semibold hover:underline">
+            Manage consultations →
+          </span>
+        </Link>
 
-        <div className="p-4 bg-white border border-slate-200 rounded-lg shadow-2xs">
+        <Link
+          to="/health-worker/follow-ups"
+          className="p-4 bg-white border border-slate-200 hover:border-teal-400 rounded-lg shadow-2xs transition-all cursor-pointer block"
+        >
+          <div className="flex items-center justify-between text-slate-400 mb-1.5">
+            <span className="text-xs font-medium text-slate-600">Follow-ups</span>
+            <Clock className="w-4 h-4 text-indigo-700" />
+          </div>
+          <div className="text-2xl font-bold text-slate-900">8</div>
+          <span className="text-2xs text-indigo-700 mt-1 block font-semibold hover:underline">
+            Due & upcoming →
+          </span>
+        </Link>
+
+        <div className="p-4 bg-white border border-slate-200 rounded-lg shadow-2xs col-span-2 sm:col-span-1">
           <div className="flex items-center justify-between text-slate-400 mb-1.5">
             <span className="text-xs font-medium text-slate-600">Sync Status</span>
             {isOnline ? (
@@ -127,7 +151,7 @@ export const HealthWorkerPage: React.FC = () => {
       </div>
 
       {/* Quick Action Navigation Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <Link
           to="/patients/register"
           className="group p-5 bg-white border border-slate-200 hover:border-teal-400 rounded-lg transition-all shadow-2xs cursor-pointer"
@@ -146,35 +170,59 @@ export const HealthWorkerPage: React.FC = () => {
           </span>
         </Link>
 
-        <div className="p-5 bg-white border border-slate-200 rounded-lg shadow-2xs opacity-85">
-          <div className="w-10 h-10 rounded-lg bg-slate-100 border border-slate-200 text-slate-600 flex items-center justify-center mb-3">
+        <Link
+          to="/health-worker/triage"
+          className="group p-5 bg-white border border-slate-200 hover:border-teal-400 rounded-lg transition-all shadow-2xs cursor-pointer"
+        >
+          <div className="w-10 h-10 rounded-lg bg-teal-50 border border-teal-200 text-teal-700 flex items-center justify-center mb-3 group-hover:bg-teal-100 transition-colors">
             <Activity className="w-5 h-5" />
           </div>
-          <div className="flex items-center justify-between">
-            <h3 className="text-sm font-bold text-slate-800">Digital Triage</h3>
-            <span className="px-1.5 py-0.5 text-3xs font-semibold bg-slate-100 text-slate-600 rounded">
-              Coming in Step 3
-            </span>
-          </div>
+          <h3 className="text-sm font-bold text-slate-900 group-hover:text-teal-900">
+            Digital Triage
+          </h3>
           <p className="text-xs text-slate-500 mt-1 leading-relaxed">
             AI decision-support for symptom summarization, red-flags, and risk scoring.
           </p>
-        </div>
+          <span className="mt-3 inline-flex items-center text-xs font-semibold text-teal-700 group-hover:text-teal-900">
+            Start Triage <ArrowRight className="w-3.5 h-3.5 ml-1" />
+          </span>
+        </Link>
 
-        <div className="p-5 bg-white border border-slate-200 rounded-lg shadow-2xs opacity-85">
-          <div className="w-10 h-10 rounded-lg bg-slate-100 border border-slate-200 text-slate-600 flex items-center justify-center mb-3">
-            <ShieldCheck className="w-5 h-5" />
+        <Link
+          to="/health-worker/appointments"
+          className="group p-5 bg-white border border-slate-200 hover:border-teal-400 rounded-lg transition-all shadow-2xs cursor-pointer"
+        >
+          <div className="w-10 h-10 rounded-lg bg-teal-50 border border-teal-200 text-teal-700 flex items-center justify-center mb-3 group-hover:bg-teal-100 transition-colors">
+            <Calendar className="w-5 h-5" />
           </div>
-          <div className="flex items-center justify-between">
-            <h3 className="text-sm font-bold text-slate-800">Smart Referrals</h3>
-            <span className="px-1.5 py-0.5 text-3xs font-semibold bg-slate-100 text-slate-600 rounded">
-              Coming in Step 4
-            </span>
-          </div>
+          <h3 className="text-sm font-bold text-slate-900 group-hover:text-teal-900">
+            Appointments
+          </h3>
           <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-            Fast-track emergency escalation to Dhule District Hospital and specialists.
+            Schedule consultations, manage slot bookings and check patients into queue.
           </p>
-        </div>
+          <span className="mt-3 inline-flex items-center text-xs font-semibold text-teal-700 group-hover:text-teal-900">
+            Manage Appointments <ArrowRight className="w-3.5 h-3.5 ml-1" />
+          </span>
+        </Link>
+
+        <Link
+          to="/health-worker/follow-ups"
+          className="group p-5 bg-white border border-slate-200 hover:border-teal-400 rounded-lg transition-all shadow-2xs cursor-pointer"
+        >
+          <div className="w-10 h-10 rounded-lg bg-teal-50 border border-teal-200 text-teal-700 flex items-center justify-center mb-3 group-hover:bg-teal-100 transition-colors">
+            <Clock className="w-5 h-5" />
+          </div>
+          <h3 className="text-sm font-bold text-slate-900 group-hover:text-teal-900">
+            Follow-ups
+          </h3>
+          <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+            Track post-consultation care, record home visits and reschedule missed calls.
+          </p>
+          <span className="mt-3 inline-flex items-center text-xs font-semibold text-teal-700 group-hover:text-teal-900">
+            View Follow-ups <ArrowRight className="w-3.5 h-3.5 ml-1" />
+          </span>
+        </Link>
       </div>
 
       {/* Patient Registry Section */}

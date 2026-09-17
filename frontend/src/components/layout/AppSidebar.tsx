@@ -31,18 +31,20 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({ isOpen, onClose, t }) =>
     {
       id: 'appointments',
       label: t.navAppointments,
-      to: '/appointments',
+      to: '/health-worker/appointments',
       icon: Calendar,
-      disabled: true,
-      hint: 'Coming soon',
+      active:
+        location.pathname.startsWith('/health-worker/appointments') ||
+        location.pathname.startsWith('/health-worker/appointment') ||
+        location.pathname === '/appointments' ||
+        location.pathname === '/appointment',
     },
     {
       id: 'triage',
       label: t.navTriage,
-      to: '/triage',
+      to: '/health-worker/triage',
       icon: Activity,
-      disabled: true,
-      hint: 'Coming soon',
+      active: location.pathname.startsWith('/health-worker/triage'),
     },
     {
       id: 'referrals',
@@ -55,10 +57,16 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({ isOpen, onClose, t }) =>
     {
       id: 'followups',
       label: t.navFollowUps,
-      to: '/follow-ups',
+      to: '/health-worker/follow-ups',
       icon: Clock,
-      disabled: true,
-      hint: 'Coming soon',
+      active:
+        location.pathname.startsWith('/health-worker/follow-ups') ||
+        location.pathname.startsWith('/health-worker/follow-up') ||
+        location.pathname.startsWith('/health-worker/followup') ||
+        location.pathname === '/follow-ups' ||
+        location.pathname === '/follow-up' ||
+        location.pathname === '/followup' ||
+        location.pathname === '/followups',
     },
   ];
 

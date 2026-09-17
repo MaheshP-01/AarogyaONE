@@ -5,6 +5,7 @@ import { DoctorSidebar } from '../components/doctor/DoctorSidebar';
 import { useLanguage } from '../hooks/useLanguage';
 import { TRANSLATIONS } from '../utils/translations';
 import { doctorMockService } from '../services/doctorMockService';
+import { ErrorBoundary } from '../components/common/ErrorBoundary';
 
 export const DoctorLayout: React.FC = () => {
   const { currentLanguage, changeLanguage } = useLanguage();
@@ -59,7 +60,9 @@ export const DoctorLayout: React.FC = () => {
 
         {/* Clinical Content Area */}
         <main className="flex-1 min-w-0 px-4 sm:px-6 lg:px-8 py-6 max-w-7xl mx-auto w-full">
-          <Outlet context={{ currentLanguage, t, isOnline }} />
+          <ErrorBoundary>
+            <Outlet context={{ currentLanguage, t, isOnline }} />
+          </ErrorBoundary>
         </main>
       </div>
     </div>
